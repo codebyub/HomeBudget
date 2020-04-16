@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" th:fragment="layout(content)">
+<head>
+    <meta charset="UTF-8">
+    <title>Toss a Coin To Your Pocket</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/uikit.min.css}">
+    <script th:src="@{/js/uikit.js}"></script>
+    <script th:src="@{/js/uikit-icons.js}"></script>
+</head>
+<body>
+
+<div th:replace="~{fragments/top :: top}"></div>
+
+<div th:insert="${content}" class="content"></div>
+
+</body>
+</html>

@@ -1,10 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout(~{::.container})}">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Toss a Coin To Your Pocket</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-<h1>HELLO WORLD</h1>
+<div th:include="fragments/top :: top">
+</div>
+<div class="container">
+
+    <h1>Użytkowniku! Witaj w aplikacji!</h1>
+
+    <p>Zacznij wprowadzać swoje wpływy i wydatki dla lepszej kontroli budżetu.</p>
+
+</div>
 </body>
 </html>

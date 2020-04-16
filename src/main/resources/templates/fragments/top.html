@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<div th:fragment="top" class="header sticky">
+    <div id="logo"><a th:href="@{/}"><span class="app-name">Toss a Coin To Your Pocket</span></a>
+        Your Home Budget App
+    </div>
+    <nav>
+        <a th:href="@{/expenses}">
+            <button class="nav-button">Wydatki</button>
+        </a>
+        <a th:href="@{/incomes}">
+            <button class="nav-button">Wpływy</button>
+        </a>
+        <a th:href="@{/monthly-balance}">
+            <button class="nav-button">Bieżacy miesiąc</button>
+        </a>
+        <a th:href="@{/annual-balance}">
+            <button class="nav-button">Bieżacy rok</button>
+        </a>
+        <a th:href="@{/stats}">
+            <button class="nav-button">Statystyki</button>
+        </a>
+    </nav>
+</div>

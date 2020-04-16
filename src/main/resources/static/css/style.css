@@ -1,0 +1,81 @@
+body {
+    margin: 0 !important;
+    background-color: ghostwhite;
+}
+
+.header {
+    padding: 40px 0;
+    background: ghostwhite;
+}
+
+#logo {
+    width: 660px;
+    font-size: 48px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: BatangChe;
+    text-align: center;
+}
+
+.app-name {
+    color: cadetblue;
+    font-weight: bold;
+}
+
+
+.sticky {
+    position: sticky;
+    left: 0;
+    top: 0;
+    z-index: 100;
+}
+
+a {
+    text-decoration: none;
+}
+
+nav {
+    width: 100%;
+    padding: 10px 0;
+    background-color: cadetblue;
+    text-align: center;
+    border-top: 3px solid darkslategray;
+    border-bottom: 3px solid darkslategray;
+    position: sticky;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-button {
+    margin: 2px 25px 2px 25px;
+    padding: 5px 10px;
+    background: cadetblue;
+    font-family: Book Antiqua;
+    font-weight: bold;
+    font-size: 18px;
+    border: none;
+}
+
+.nav-button:hover {
+    background: lightblue;
+    border-radius: 10px;
+}
+
+.content {
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 100px;
+}
+
+.content-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.savings-cards {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+

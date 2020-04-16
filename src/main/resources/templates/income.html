@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout(~{::.container})}">
+<body>
+<div class="container">
+
+    <div class="content-header">
+        <h2>Dodaj nowy wpływ</h2>
+        <button class="uk-button uk-button-secondary">Zatwierdź</button>
+    </div>
+
+    <form style="width: 400px; margin: auto" method="post">
+        <div class="uk-margin">
+            <label>Data</label>
+            <input type="date" class="uk-input">
+        </div>
+        <div class="uk-margin">
+            <label>Kwota</label>
+            <input type="number" step="0.01" class="uk-input">
+        </div>
+        <div class="uk-margin">
+            <label>Opis</label>
+            <input type="text" class="uk-input">
+        </div>
+        <input type="number" hidden>
+        <input type="text" hidden>
+        <a th:href="@{/incomes}"><input class="uk-button uk-button-danger" type="button" value="Anuluj"></a>
+        <input class="uk-button uk-button-primary" type="submit" value="Zapisz">
+    </form>
+
+</div>
+</body>
+</html>

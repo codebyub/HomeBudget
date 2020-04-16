@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout(~{::.container})}">
+<body>
+<div class="container">
+
+    <h2>TWOJE SALDO W 2020 ROKU: <span style="color:green">+387423,32 PLN</span></h2>
+
+    <table class="uk-table uk-table-hover">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Data</th>
+            <th>Kwota</th>
+            <th>Kategoria</th>
+            <th>Opis (niewymagane)</th>
+            <th>Aktywność</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr>
+            <td>1</td>
+            <td>11.01.2020</td>
+            <td>1000000,98 PLN</td>
+            <td>Samochód</td>
+            <td>Nowe auto</td>
+            <td>
+                <button class="uk-button-primary" th:text="Edytuj"></button>
+                <button class="uk-button-danger" th:text="Usuń"></button>
+        </tr>
+
+        <tr>
+            <td>2</td>
+            <td>1.04.2020</td>
+            <td>2,98 PLN</td>
+            <td>Zdrowie</td>
+            <td>Tabletki</td>
+            <td>
+                <button class="uk-button-primary" th:text="Edytuj"></button>
+                <button class="uk-button-danger" th:text="Usuń"></button>
+        </tr>
+
+        </tbody>
+    </table>
+    <a th:href="@{/}">
+        <button class="uk-button-secondary" th:text="Powrót"></button>
+    </a>
+
+</div>
+</body>
+</html>

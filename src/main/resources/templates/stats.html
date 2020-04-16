@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout(~{::.container})}">
+<body>
+<div class="container">
+
+    <h1>STATYSTYKI</h1>
+
+    <h2>Twoje finanse</h2>
+    <h4>Bieżące saldo: 25 000 PLN</h4>
+    <p></p>
+    <h2>Wykres wpływy / m-c</h2>
+    <h2>Wykres wydatki wg kategorii</h2>
+
+    <a th:href="@{/}">
+        <button class="uk-button-secondary" th:text="Powrót"></button>
+    </a>
+</div>
+</body>
+</html>
