@@ -72,10 +72,14 @@ nav {
     display: flex;
     justify-content: space-between;
 }
-
+/*
 .savings-cards {
     display: flex;
     justify-content: space-evenly;
+}*/
+
+.trans-select option:nth-child(13) {
+    display: none;
 }
 
 
