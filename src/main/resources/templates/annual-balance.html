@@ -3,7 +3,7 @@
 <body>
 <div class="container">
 
-    <h2>TWOJE SALDO W 2020 ROKU: <span style="color:green">+387423,32 PLN</span></h2>
+    <h2>WSZYSTKIE OPERACJE - <span th:text="${#dates.year(#dates.createNow())}"></span> ROK:</h2>
 
     <table class="uk-table uk-table-hover">
         <thead>
@@ -18,32 +18,18 @@
         </thead>
         <tbody>
 
-        <tr>
-            <td>1</td>
-            <td>11.01.2020</td>
-            <td>1000000,98 PLN</td>
-            <td>Samochód</td>
-            <td>Nowe auto</td>
-            <td>
-                <button class="uk-button-primary" th:text="Edytuj"></button>
-                <button class="uk-button-danger" th:text="Usuń"></button>
-        </tr>
-
-        <tr>
-            <td>2</td>
-            <td>1.04.2020</td>
-            <td>2,98 PLN</td>
-            <td>Zdrowie</td>
-            <td>Tabletki</td>
-            <td>
-                <button class="uk-button-primary" th:text="Edytuj"></button>
-                <button class="uk-button-danger" th:text="Usuń"></button>
+        <tr th:each="transaction : ${transactions}">
+            <td th:text="${transaction.id}"></td>
+            <td th:text="${transaction.date}"></td>
+            <td th:text="${transaction.amount}"></td>
+            <td th:text="${transaction.category.displayValue}"></td>
+            <td th:text="${transaction.description}"></td>
         </tr>
 
         </tbody>
     </table>
     <a th:href="@{/}">
-        <button class="uk-button-secondary" th:text="Powrót"></button>
+        <button class="uk-button uk-button-secondary" th:text="Powrót"></button>
     </a>
 
 </div>

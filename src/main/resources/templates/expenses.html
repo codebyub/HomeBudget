@@ -4,12 +4,11 @@
 <div class="container">
 
     <div class="content-header">
-        <h2>TWOJE OSTATNIE 10 WYDATKÓW</h2>
+        <h2>OSTATNIE WYDATKI</h2>
         <a th:href="@{/expenses/new}">
             <input class="uk-button uk-button-secondary" type="button" value="Dodaj nowy">
         </a>
     </div>
-
 
     <table class="uk-table uk-table-hover">
         <thead>
@@ -23,35 +22,24 @@
         </tr>
         </thead>
         <tbody>
-
-        <tr>
-            <td>1</td>
-            <td>1.04.2020</td>
-            <td>1000000,98 PLN</td>
-            <td>Prezenty</td>
-            <td>Prima Aprilis</td>
+        <tr th:each="expense : ${expenses}">
+            <td th:text="${expense.id}"></td>
+            <td th:text="${expense.date}"></td>
+            <td th:text="${expense.amount}"></td>
+            <td th:text="${expense.category.displayValue}"></td>
+            <td th:text="${expense.description}"></td>
             <td>
-                <button class="uk-button-primary" th:text="Edytuj"></button>
-                <button class="uk-button-danger" th:text="Usuń"></button>
-        </tr>
-
-        <tr>
-            <td>2</td>
-            <td>1.04.2020</td>
-            <td>0,98 PLN</td>
-            <td>Artykuły spożywcze</td>
-            <td>Pączki</td>
-            <td>
-                <a th:href="@{/outgo}">
-                    <button class="uk-button-primary" th:text="Edytuj"></button>
+                <a th:href="@{/expenses/edit/{id}(id=${expense.id})}">
+                    <button class="uk-button uk-button-primary" th:text="Edytuj"></button>
                 </a>
-                <button class="uk-button-danger" th:text="Usuń"></button>
+                <a th:href="@{/expenses/delete/{id}(id=${expense.id})}">
+                    <button class="uk-button uk-button-danger" th:text="Usuń"></button>
+                </a>
         </tr>
-
         </tbody>
     </table>
     <a th:href="@{/}">
-        <button class="uk-button-secondary" th:text="Powrót"></button>
+        <button class="uk-button uk-button-secondary" th:text="Powrót"></button>
     </a>
 
 
