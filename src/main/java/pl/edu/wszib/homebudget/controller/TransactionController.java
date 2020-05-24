@@ -3,11 +3,15 @@ package pl.edu.wszib.homebudget.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.edu.wszib.homebudget.dao.TransactionDao;
 import pl.edu.wszib.homebudget.domain.Transaction;
+
+import javax.validation.Valid;
+import java.math.BigDecimal;
 
 @Controller
 public class TransactionController {
@@ -22,7 +26,7 @@ public class TransactionController {
 
     @GetMapping("expenses")
     public String expenses(Model model) {
-        model.addAttribute("expenses", transactionDao.findAll());
+        model.addAttribute("expenses", transactionDao.findAllExpenses());
         return "expenses";
     }
 
@@ -33,7 +37,13 @@ public class TransactionController {
     }
 
     @PostMapping("expenses/save")
-    public String saveExpense(Transaction transaction) {
+    public String saveExpense(@Valid Transaction transaction, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("expense", transaction);
+            return "expense";
+        }
+        transactionDao.save(transaction);
+        transaction.setBalance(transactionDao.total());
         transactionDao.save(transaction);
         return "redirect:/expenses";
     }
@@ -63,7 +73,13 @@ public class TransactionController {
     }
 
     @PostMapping("incomes/save")
-    public String saveIncome(Transaction transaction) {
+    public String saveIncome(@Valid Transaction transaction, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("income", transaction);
+            return "income";
+        }
+        transactionDao.save(transaction);
+        transaction.setBalance(transactionDao.total());
         transactionDao.save(transaction);
         return "redirect:/incomes";
     }

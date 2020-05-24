@@ -3,7 +3,10 @@
 <body>
 <div class="container">
 
-    <h2>WSZYSTKIE OPERACJE- <span th:text="${#dates.monthName(#dates.createNow()).toUpperCase()}"></span>:</h2>
+    <h1>WSZYSTKIE OPERACJE- <span th:text="${#dates.monthName(#dates.createNow()).toUpperCase()}"></span>:</h1>
+
+    <h2>SALDO <span th:each="transaction, iterStat : ${transactions}" th:if="(${transaction.id} == ${iterStat.size})"
+                    th:text="${transaction.balance}"></span></h2>
 
     <table class="uk-table uk-table-hover">
         <thead>
