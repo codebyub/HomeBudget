@@ -4,16 +4,22 @@
 <div class="container">
 
     <div class="content-header">
-        <h2>OSTATNIE WYDATKI</h2>
+        <h1>OSTATNIE WYDATKI</h1>
+
         <a th:href="@{/expenses/new}">
             <input class="uk-button uk-button-secondary" type="button" value="Dodaj nowy">
         </a>
     </div>
 
+    <h2>SALDO:
+        <span th:if="${expenses.isEmpty()}" th:text="${#numbers.formatCurrency(0)}"></span>
+        <span th:text="${#numbers.formatCurrency(#aggregates.sum(expenses.![amount]))}"></span>
+    </h2>
+
     <table class="uk-table uk-table-hover">
         <thead>
         <tr>
-            <th>ID</th>
+            <th>Lp.</th>
             <th>Data</th>
             <th>Kwota</th>
             <th>Kategoria</th>
@@ -22,10 +28,11 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="expense : ${expenses}">
-            <td th:text="${expense.id}"></td>
+
+        <tr th:each="expense, iterator : ${expenses}">
+            <td th:text="${iterator.count}"></td>
             <td th:text="${expense.date}"></td>
-            <td th:text="${expense.amount}"></td>
+            <td th:text="${#numbers.formatCurrency(expense.amount)}"></td>
             <td th:text="${expense.category.displayValue}"></td>
             <td th:text="${expense.description}"></td>
             <td>
@@ -36,6 +43,7 @@
                     <button class="uk-button uk-button-danger" th:text="Usuń"></button>
                 </a>
         </tr>
+
         </tbody>
     </table>
     <a th:href="@{/}">

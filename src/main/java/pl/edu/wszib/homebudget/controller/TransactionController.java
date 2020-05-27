@@ -8,16 +8,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.edu.wszib.homebudget.dao.TransactionDao;
+import pl.edu.wszib.homebudget.dao.UserDao;
 import pl.edu.wszib.homebudget.domain.Transaction;
 
 import javax.validation.Valid;
-import java.math.BigDecimal;
 
 @Controller
 public class TransactionController {
 
     @Autowired
     private TransactionDao transactionDao;
+
+    @Autowired
+    private UserDao userDao;
 
     @GetMapping
     public String welcome() {
@@ -42,8 +45,7 @@ public class TransactionController {
             model.addAttribute("expense", transaction);
             return "expense";
         }
-        transactionDao.save(transaction);
-        transaction.setBalance(transactionDao.total());
+        transaction.setAmount(transaction.getAmount().negate());
         transactionDao.save(transaction);
         return "redirect:/expenses";
     }
@@ -79,8 +81,6 @@ public class TransactionController {
             return "income";
         }
         transactionDao.save(transaction);
-        transaction.setBalance(transactionDao.total());
-        transactionDao.save(transaction);
         return "redirect:/incomes";
     }
 
@@ -107,4 +107,12 @@ public class TransactionController {
         model.addAttribute("transactions", transactionDao.findAllInCurrentYear());
         return "annual-balance";
     }
+
+    @GetMapping("statistics")
+    public String stats(Model model) {
+        model.addAttribute("transactions", transactionDao.findAllInCurrentYear());
+        model.addAttribute("users", userDao.findAll());
+        return "stats";
+    }
+
 }

@@ -5,13 +5,16 @@
 
     <h1>WSZYSTKIE OPERACJE- <span th:text="${#dates.monthName(#dates.createNow()).toUpperCase()}"></span>:</h1>
 
-    <h2>SALDO <span th:each="transaction, iterStat : ${transactions}" th:if="(${transaction.id} == ${iterStat.size})"
-                    th:text="${transaction.balance}"></span></h2>
+    <h2>SALDO:
+        <span th:if="${transactions.isEmpty()}" th:text="${#numbers.formatCurrency(0)}"></span>
+        <span th:text="${#numbers.formatCurrency(#aggregates.sum(transactions.![amount]))}"></span>
+    </h2>
+
 
     <table class="uk-table uk-table-hover">
         <thead>
         <tr>
-            <th>ID</th>
+            <th>Lp.</th>
             <th>Data</th>
             <th>Kwota</th>
             <th>Kategoria</th>
@@ -20,10 +23,10 @@
         </thead>
         <tbody>
 
-        <tr th:each="transaction : ${transactions}">
-            <td th:text="${transaction.id}"></td>
+        <tr th:each="transaction, iterator : ${transactions}">
+            <td th:text="${iterator.count}"></td>
             <td th:text="${transaction.date}"></td>
-            <td th:text="${transaction.amount}"></td>
+            <td th:text="${#numbers.formatCurrency(transaction.amount)}"></td>
             <td th:text="${transaction.category.displayValue}"></td>
             <td th:text="${transaction.description}"></td>
         </tr>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout(~{::.container})}">
+<body>
+<div class="container">
+    <div class="content-header">
+        <h2>Zmień ustawienia użytkownika</h2></div>
+
+    <form style="width: 400px; margin: auto" th:object="${user}" th:action="@{/customize/user/save}" method="post">
+        <div class="uk-margin">
+            <label>Ustaw nazwę użytkownika:</label>
+            <input th:field="*{name}" type="text" class="uk-input">
+        </div>
+        <div class="uk-margin">
+            <label>Kompensuj saldo:</label>
+            <input th:field="*{compensateBalance}" type="number" step="0.01" class="uk-input">
+        </div>
+        <input th:field="*{userId}" type="number" hidden>
+        <a th:href="@{/customize}"><input class="uk-button uk-button-danger" type="button" value="Anuluj"></a>
+        <input class="uk-button uk-button-secondary" type="submit" value="Zapisz">
+    </form>
+
+</div>
+</body>
+</html>

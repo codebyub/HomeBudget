@@ -4,16 +4,21 @@
 <div class="container">
 
     <div class="content-header">
-        <h2>TWOJE WPŁYWY - <span th:text="${#dates.monthName(#dates.createNow()).toUpperCase()}"></span></h2>
+        <h1>TWOJE WPŁYWY - <span th:text="${#dates.monthName(#dates.createNow()).toUpperCase()}"></span></h1>
         <a th:href="@{/incomes/new}">
             <input class="uk-button uk-button-secondary" type="button" value="Dodaj nowy">
         </a>
     </div>
 
+    <h2>SALDO:
+        <span th:if="${incomes.isEmpty()}" th:text="${#numbers.formatCurrency(0)}"></span>
+        <span th:text="${#numbers.formatCurrency(#aggregates.sum(incomes.![amount]))}"></span>
+    </h2>
+
     <table class="uk-table uk-table-hover">
         <thead>
         <tr>
-            <th>ID</th>
+            <th>Lp.</th>
             <th>Data</th>
             <th>Kwota</th>
             <th>Opis (niewymagane)</th>
@@ -21,10 +26,10 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="income : ${incomes}">
-            <td th:text="${income.id}"></td>
+        <tr th:each="income, iterator : ${incomes}">
+            <td th:text="${iterator.count}"></td>
             <td th:text="${income.date}"></td>
-            <td th:text="${income.amount}"></td>
+            <td th:text="${#numbers.formatCurrency(income.amount)}"></td>
             <td th:text="${income.description}"></td>
             <td>
                 <a th:href="@{/incomes/edit/{id}(id=${income.id})}">

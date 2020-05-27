@@ -1,7 +1,7 @@
 package pl.edu.wszib.homebudget.domain;
 
 import lombok.Data;
-import org.hibernate.annotations.Formula;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -17,25 +17,25 @@ import java.time.LocalDateTime;
 public class Transaction {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+    @NotNull
     @PastOrPresent(message = "!!!")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
-    /*    @Formula("balance-amount")*/
-    private BigDecimal balance;
+    @NotNull(message = "Wydatek/Wpływ nie może być 0!")
     private BigDecimal amount;
     private TransactionCategory category;
     private String description;
     @UpdateTimestamp
+    @ColumnDefault(value = "current_timestamp")
     private LocalDateTime updateDate;
 
     public Transaction() {
     }
 
-    public Transaction(LocalDate date, BigDecimal balance, BigDecimal amount, TransactionCategory category, String description, LocalDateTime updateDate) {
+    public Transaction(LocalDate date, BigDecimal amount, TransactionCategory category, String description, LocalDateTime updateDate) {
         this.date = date;
-        this.balance = balance;
         this.amount = amount;
         this.category = category;
         this.description = description;
