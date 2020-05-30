@@ -20,7 +20,7 @@
     <div th:each="user, iterator : ${users}"
          class="uk-card uk-card-secondary uk-card-hover uk-card-body uk-light uk-width-1-4 uk-text-center">
         <p class="uk-card-title" th:text="${user.name}"></p>
-        <p>Twoje saldo: <b th:text="${#numbers.formatCurrency(user.compensateBalance)}"></b></p>
+        <p><b th:text="'Twoje sadlo: ' + ${#numbers.formatCurrency(user.compensateBalance)}"></b></p>
         <a th:href="@{/customize/user/{id}(id=${user.userId})}">
             <button class="uk-button-small uk-button-primary" th:text="Edytuj"></button>
         </a>
