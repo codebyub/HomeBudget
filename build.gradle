@@ -31,7 +31,6 @@ dependencies {
     compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.16.Final'
     testCompile group: 'com.h2database', name: 'h2', version: '1.4.200'
     compile group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-java8time', version: '3.0.4.RELEASE'
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '2.3.0.RELEASE'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {

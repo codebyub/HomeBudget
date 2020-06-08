@@ -1,10 +1,12 @@
 package pl.edu.wszib.homebudget.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.edu.wszib.homebudget.dao.TransactionDao;
@@ -40,7 +42,7 @@ public class TransactionController {
     }
 
     @PostMapping("expenses/save")
-    public String saveExpense(@Valid Transaction transaction, BindingResult bindingResult, Model model) {
+    public String saveExpense(@Valid @ModelAttribute("expense") Transaction transaction, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("expense", transaction);
             return "expense";
@@ -75,7 +77,7 @@ public class TransactionController {
     }
 
     @PostMapping("incomes/save")
-    public String saveIncome(@Valid Transaction transaction, BindingResult bindingResult, Model model) {
+    public String saveIncome(@Valid @ModelAttribute("income") Transaction transaction, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("income", transaction);
             return "income";
@@ -87,6 +89,7 @@ public class TransactionController {
     @GetMapping("incomes/edit/{id}")
     public String editIncomeForm(@PathVariable long id, Model model) {
         model.addAttribute("income", transactionDao.findById(id));
+
         return "income";
     }
 
@@ -111,6 +114,7 @@ public class TransactionController {
     @GetMapping("statistics")
     public String stats(Model model) {
         model.addAttribute("transactions", transactionDao.findAllInCurrentYear());
+        model.addAttribute("salaries", transactionDao.findSalariesInCurrentYear());
         model.addAttribute("users", userDao.findAll());
         return "stats";
     }
