@@ -20,8 +20,16 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class TransactionDaoTest {
 
-    /*Data for tests*/
-    public static final LocalDate DATE1 = LocalDate.of(2020, Month.MAY, 10);
+// !!! ATTENTION !!!
+//Some of the custom queries are based on dynamic dates (referring to current month and current year).
+//Make sure you have meet following conditions to be sure to run these tests successfully:
+// * DATE1: year == current, month == current, day <= today
+// * DATE2: year == current, month < current
+// * DATE 3: year == current, month < current
+// * DATE 4: year <= current
+// * LEAVE THE OTHER DATA AS THEY ARE.
+
+    public static final LocalDate DATE1 = LocalDate.of(2020, Month.JUNE, 03);
     public static final LocalDate DATE2 = LocalDate.of(2020, Month.APRIL, 10);
     public static final LocalDate DATE3 = LocalDate.of(2020, Month.FEBRUARY, 15);
     public static final LocalDate DATE4 = LocalDate.of(2019, Month.OCTOBER, 29);
@@ -34,12 +42,14 @@ class TransactionDaoTest {
     public static final TransactionCategory CAT3 = TransactionCategory.BILL;
     public static final TransactionCategory CAT4 = TransactionCategory.CAR;
     public static final String DESC1 = "wynagrodzenie";
-    public static final String DESC2 = "Wynagrodzenie";
+    public static final String DESC2 = "wynagrodzenie";
     public static final String DECS3 = "Energia elektryczna";
     public static final String DESC4 = "Zakup samochodu osobwego z salonu";
     public static final LocalDateTime RIGHT_NOW = LocalDateTime.from(LocalDateTime.now());
+    public static final boolean DEL = false;
     public static final int TOTAL_COUNTER = 4;
     public static final int ALL_EXPENSES_COUNTER = 2;
+    public static final int SALARY_IN_CURRENT_YEAR = 2;
     public static final int INCOMES_IN_CURRENT_MONTH = 1;
     public static final int ALL_IN_CURRENT_MONTH = 1;
     public static final int ALL_IN_CURRENT_YEAR = 3;
@@ -50,10 +60,10 @@ class TransactionDaoTest {
 
     @BeforeEach
     void setUp() {
-        Transaction transaction1 = new Transaction(DATE1, AMOUNT1, CAT1, DESC1, RIGHT_NOW);
-        Transaction transaction2 = new Transaction(DATE2, AMOUNT2, CAT2, DESC2, RIGHT_NOW);
-        Transaction transaction3 = new Transaction(DATE3, AMOUNT3, CAT3, DECS3, RIGHT_NOW);
-        Transaction transaction4 = new Transaction(DATE4, AMOUNT4, CAT4, DESC4, RIGHT_NOW);
+        Transaction transaction1 = new Transaction(DATE1, AMOUNT1, CAT1, DESC1, RIGHT_NOW, DEL);
+        Transaction transaction2 = new Transaction(DATE2, AMOUNT2, CAT2, DESC2, RIGHT_NOW, DEL);
+        Transaction transaction3 = new Transaction(DATE3, AMOUNT3, CAT3, DECS3, RIGHT_NOW, DEL);
+        Transaction transaction4 = new Transaction(DATE4, AMOUNT4, CAT4, DESC4, RIGHT_NOW, DEL);
 
         transactionDao.save(transaction1);
         transactionDao.save(transaction2);
@@ -101,4 +111,9 @@ class TransactionDaoTest {
         assertEquals(ALL_IN_CURRENT_YEAR, transactions.size());
     }
 
+    @Test
+    void findSalariesInCurrentYear() {
+        Collection transactions = (Collection) transactionDao.findSalariesInCurrentYear();
+        assertEquals(SALARY_IN_CURRENT_YEAR, transactions.size());
+    }
 }
