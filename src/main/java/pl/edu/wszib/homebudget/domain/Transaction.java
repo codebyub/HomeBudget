@@ -8,10 +8,10 @@ import org.hibernate.annotations.Where;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Entity
@@ -23,11 +23,8 @@ public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    @NotNull(message = "{transaction.date.notNull}")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @PastOrPresent(message = "{transaction.date.notFuture}")
     private LocalDate date;
-    @NotNull(message = "{transaction.amount.notNull}")
     private BigDecimal amount;
     private TransactionCategory category;
     private String description;

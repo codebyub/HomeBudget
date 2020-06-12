@@ -12,11 +12,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import pl.edu.wszib.homebudget.dao.TransactionDao;
 import pl.edu.wszib.homebudget.dao.UserDao;
 import pl.edu.wszib.homebudget.domain.Transaction;
+import pl.edu.wszib.homebudget.service.TransactionService;
 
 import javax.validation.Valid;
 
 @Controller
 public class TransactionController {
+
+    TransactionService service;
+
+    public TransactionController(TransactionService service) {
+        this.service = service;
+    }
 
     @Autowired
     private TransactionDao transactionDao;
@@ -31,7 +38,7 @@ public class TransactionController {
 
     @GetMapping("expenses")
     public String expenses(Model model) {
-        model.addAttribute("expenses", transactionDao.findAllExpenses());
+        model.addAttribute("expenses", service.list());
         return "expenses";
     }
 
