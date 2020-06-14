@@ -1,15 +1,17 @@
 package pl.edu.wszib.homebudget.domain;
 
 import lombok.Data;
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Set;
+
+import java.util.Collection;
+
 
 @Data
 @Entity
@@ -19,9 +21,13 @@ public class User {
     @Id
     @GeneratedValue
     private long userId;
+    @NotNull
+    @Size(
+            min = 2,
+            message = "{user.name.notNull}"
+    )
     private String name;
-    /*    @OneToMany(targetEntity = UserFinance.class, mappedBy = "user")
-        Set<UserFinance> userFinanceSet;*/
+    @NotNull (message = "{user.balance.notNull}")
     private BigDecimal compensateBalance;
     @CreationTimestamp
     private LocalDateTime ctime;
