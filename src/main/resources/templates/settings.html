@@ -14,7 +14,7 @@
         </div>
 
         <div th:each="user, iterator : ${users}"
-             class="uk-card uk-card-secondary uk-card-hover uk-card-body uk-light uk-width-1-3 uk-text-center">
+             class="uk-card uk-card-hover uk-card-body uk-width-1-3 uk-text-center">
             <p class="uk-card-title" th:text="'Witaj ' + ${user.name} + '!'"></p>
             <p>Spersonalizowałeś swoją aplikację. Możesz korzystać z pełnej funkcjonalności (przejdź
                 do <a th:href="@{/statistics}"><span>statystyk</span></a>).</p>

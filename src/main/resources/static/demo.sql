@@ -1,0 +1,34 @@
+/*Execute those inserts in order to play with test data.*/
+
+INSERT INTO transactions (id, amount, category, date, description, deleted) VALUES ('1', '-11.99', '7', '2020-05-21', 'domestos', 0);
+INSERT INTO transactions (id, amount, category, date, description, deleted) VALUES ('2', '-114.59', '1', '2019-05-27', 'prognoza za prąd', 0);
+INSERT INTO transactions (id, amount, category, date, description, deleted) VALUES ('3', '-75135.99', '3', '2020-03-15', 'remont dachu', 0);
+INSERT INTO transactions (id, amount, category, date, description, deleted) VALUES ('4', '-49999.00', '4', '2020-02-11', 'zakup samochodu za gotówkę', 0);
+INSERT INTO transactions (id, amount, category, date, description, deleted) VALUES ('5', '-457.24', '6', '2020-05-21', 'zapasy na kwarantannę', 0);
+INSERT INTO transactions (id, amount, category, date, description, deleted) VALUES ('6', '5874.24', '12', '2020-04-10', 'wynagrodzenie', 0);
+INSERT INTO transactions (id, amount, category, date, description, deleted) VALUES ('7', '25000.00', '12', '2019-10-15', 'darowizna', 0);
+INSERT INTO transactions (id, amount, category, date, description, deleted) VALUES ('8', '-32.00', '10', '2020-05-07', 'bilet do kina', 0);
+INSERT INTO transactions (id, amount, category, date, description, deleted) VALUES ('9', '-80.00', '5', '2020-05-14', 'wizyta u weterynarza', 0);
+INSERT INTO transactions (id, amount, category, date, description, deleted) VALUES ('10', '-190.00', '8', '2020-03-13', 'prywatna wizyta u endokrynologa', 0);
+INSERT INTO transactions (id, amount, category, date, description, deleted) VALUES ('11', '-150.49', '9', '2020-04-20', 'jeansy', 0);
+INSERT INTO transactions (id, amount, category, date, description, deleted) VALUES ('12', '-660.00', '10', '2020-02-19', 'bilety na kontcert RATM', 0);
+INSERT INTO transactions (id, amount, category, date, description, deleted) VALUES ('13', '-49.00', '11', '2020-05-26', 'kwiaty na Dzień Matki', 0);
+INSERT INTO transactions (id, amount, category, date, description, deleted) VALUES ('14', '-11.78', '13', '2020-05-21', '---', 0);
+INSERT INTO transactions (id, amount, category, date, description, deleted) VALUES ('15', '251.24', '12', '2020-05-09', 'odsetki od lokaty oszczędnościowej', 0);
+INSERT INTO transactions (id, amount, category, date, description, deleted) VALUES ('16', '-330.99', 0, '2020-01-10', 'szczepionka 6w1', 0);
+INSERT INTO transactions (id, amount, category, date, description, deleted) VALUES ('17', '-500.00', '2', '2020-05-21', 'comiesięczne zasilenie lokaty', 0);
+INSERT INTO transactions (id, amount, category, date, description, deleted) VALUES ('18', '500.00', '12', '2020-05-25', '500+', 0);
+INSERT INTO transactions (id, amount, category, date, description, deleted) VALUES ('19', '6872.98', '12', '2020-05-10', 'wynagrodzenie', 0);
+INSERT INTO transactions (id, amount, category, date, description, deleted) VALUES ('20', '-29.99', '7', '2020-01-05', 'płyn do Karchera', 0);
+INSERT INTO transactions (id, amount, category, date, description, deleted) VALUES ('21', '-29.99', '5', '2020-05-14', 'karma dla psa', 0);
+INSERT INTO transactions (id, amount, category, date, description, deleted) VALUES ('22', '5874.24', '12', '2020-01-10', 'wynagrodzenie', 0);
+INSERT INTO transactions (id, amount, category, date, description, deleted) VALUES ('23', '5874.24', '12', '2020-02-10', 'wynagrodzenie', 0);
+INSERT INTO transactions (id, amount, category, date, description, deleted) VALUES ('24', '5874.24', '12', '2020-03-10', 'wynagrodzenie', 0);
+INSERT INTO transactions (id, amount, category, date, description, deleted) VALUES ('25', '5874.24', '12', '2020-05-10', 'wynagrodzenie', 0);
+INSERT INTO transactions (id, amount, category, date, description, deleted) VALUES ('26', '5874.24', '12', '2020-06-10', 'wynagrodzenie', 0);
+INSERT INTO transactions (id, amount, category, date, description, deleted) VALUES ('27', '5874.24', '12', '2020-07-10', 'wynagrodzenie', 0);
+INSERT INTO transactions (id, amount, category, date, description, deleted) VALUES ('28', '5874.24', '12', '2020-08-10', 'wynagrodzenie', 0);
+INSERT INTO transactions (id, amount, category, date, description, deleted VALUES ('29', '5874.24', '12', '2020-09-10', 'wynagrodzenie', 0);
+INSERT INTO transactions (id, amount, category, date, description, deleted) VALUES ('30', '5874.24', '12', '2020-10-10', 'wynagrodzenie', 0);
+INSERT INTO transactions (id, amount, category, date, description, deleted) VALUES ('31', '5874.24', '12', '2020-11-10', 'wynagrodzenie', 0);
+INSERT INTO transactions (id, amount, category, date, description, deleted) VALUES ('32', '5874.24', '12', '2020-12-10', 'wynagrodzenie', 0);

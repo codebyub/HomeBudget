@@ -26,4 +26,7 @@ public interface TransactionDao extends CrudRepository<Transaction, Long> {
     @Query(value = "SELECT t FROM Transaction t WHERE year(t.date) = year(CURRENT_DATE) ORDER BY t.date DESC")
     Collection<Transaction> findAllInCurrentYear();
 
+    @Query(value = "SELECT t FROM Transaction t WHERE year(t.date) = year(CURRENT_DATE) AND t.description = 'wynagrodzenie' ORDER BY t.date DESC")
+    Collection<Transaction> findSalariesInCurrentYear();
+
 }

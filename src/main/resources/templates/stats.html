@@ -3,9 +3,62 @@
 <body>
 <div class="container">
 
+    <h3 th:if="${transactions.isEmpty()} or ${users.isEmpty()}"
+    >Nie wprowadzono jeszcze
+        <span th:if="${users.isEmpty()}">danych
+                <a th:href="@{/customize/set_user}">użytkownika,</a>
+            </span>
+        <span>
+            <a th:href="@{/expenses/new}" th:if="${transactions.isEmpty()}">wydatków /</a>
+                <a th:href="@{/incomes/new}" th:if="${transactions.isEmpty()}">wpływów</a>
+            </span>.
+    </h3>
+
+    <div id="stats">
+
+        <div id="col-stats">
+            <div class="stats-child" th:if="!(${transactions.isEmpty()}) and !(${users.isEmpty()})">
+                <h3>Twoje aktualne saldo:</h3>
+                <h1 th:each="user : ${users}"
+                    th:style="${user.getCompensateBalance().add(#aggregates.sum(transactions.![amount]))} >= 0 ? 'color: green' : 'color: red'"
+                    th:text="${user.getCompensateBalance().add(#aggregates.sum(transactions.![amount]))} + ' zł'">
+                </h1>
+            </div>
+
+            <div class="stats-child" th:if="!(${expenses.isEmpty()})">
+                <h3>Najdroższy wydatek:</h3>
+                <h1 th:text="${#numbers.formatCurrency(T(pl.edu.wszib.homebudget.domain.Transaction).minExpenseValue(expenses))}">
+                    :</h1>
+            </div>
+        </div>
+
+        <div class="stats-child" th:if="!(${salaries.isEmpty()})">
+            <h3>Twoje wynagrodzenie w bieżacym roku:</h3>
+            <h4 th:text="'Suma: ' + ${#numbers.formatCurrency(#aggregates.sum(salaries.![amount]))}"></h4>
+            <h4 th:text="'Średnia: ' + ${#numbers.formatCurrency(#aggregates.avg(salaries.![amount]))}"></h4>
+
+            <table class="uk-table uk-table-hover">
+                <thead>
+                <tr>
+                    <th>Miesiąc</th>
+                    <th>Kwota</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="salary, iterator : ${salaries}">
+                    <td th:text="${salary.date.getMonth()}"></td>
+                    <td th:text="${#numbers.formatCurrency(salary.amount)}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
     <a th:href="@{/}">
-        <button class="uk-button-secondary" th:text="Powrót"></button>
+        <button class="uk-button uk-button-secondary" th:text="Powrót"></button>
     </a>
+
 </div>
 </body>
 </html>

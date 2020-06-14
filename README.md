@@ -29,13 +29,23 @@ I like to keep my expenses under controll, so I thought it would be a great idea
 1. Run task ```gradlew build``` in the console.
 1. Open your browser and select ```localhost:8080```
 1. Application is ready to use.
+
+You can use a prepared ```resources\static\demo.sql``` file with some demo inserts for different transactions or start adding your money operations (expenses and incomes) from whenever you want in the past up to current day. It's up to you if you want to start your history right here, right now or have some history behind.
+History is availabe for different views:
+1. Wydatki - overall expenses,
+1. Wpływy - incomes in current month,
+1. Bieżacy miesiąc - all together within current month,
+1. Bieżacy rok - all together within current year,
+1. Statystki - check your balance (only if you  have customized the app), find the highest expense and overview your salary in current year. To be able to see salaries statistics please insert your income with mandatory description 'wynagrodzenie' (case sensitive).
+
+There's no user active by default and it's not necessary, but you can customize your app with your name(that can be real name, nickname or whatever you type in) as well as some starting balance.
 ## Status
 What's ready vs. what'll be ready:
 - [x] Create, Read, Update and Delete of your Expenses/Incomes
 - [x] Overview latest expenses, current-month incomes, all together in current-month and current-year mode
 - [ ] Planned expenses with balance compensation
-- [ ] Statistics
-- [ ] User setup
+- [x] Statistics
+- [x] User setup
 ## Inspiration
 So far I was inspired for the name of my app with the [Witcher OST](https://youtu.be/hqbS7O9qIXE "Toss a Coin To Your Witcher") song. You can make laught, but I loved this song from its very first tone. Later on I'll share some technical references, while my code will be developed.
 

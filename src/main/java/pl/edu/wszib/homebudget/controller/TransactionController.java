@@ -14,6 +14,7 @@ import pl.edu.wszib.homebudget.dao.UserDao;
 import pl.edu.wszib.homebudget.domain.Transaction;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 public class TransactionController {
@@ -53,7 +54,8 @@ public class TransactionController {
     }
 
     @GetMapping("expenses/edit/{id}")
-    public String editExpenseForm(@PathVariable long id, Model model) {
+
+        public String editExpenseForm(@PathVariable long id, Model model) {
         model.addAttribute("expense", transactionDao.findById(id));
         return "expense";
     }
@@ -114,6 +116,7 @@ public class TransactionController {
     @GetMapping("statistics")
     public String stats(Model model) {
         model.addAttribute("transactions", transactionDao.findAllInCurrentYear());
+        model.addAttribute("expenses", transactionDao.findAllExpenses());
         model.addAttribute("salaries", transactionDao.findSalariesInCurrentYear());
         model.addAttribute("users", userDao.findAll());
         return "stats";

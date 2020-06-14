@@ -10,7 +10,7 @@
         </a>
     </div>
 
-    <h2>SALDO:
+    <h2>RAZEM:
         <span th:if="${incomes.isEmpty()}" th:text="${#numbers.formatCurrency(0)}"></span>
         <span th:text="${#numbers.formatCurrency(#aggregates.sum(incomes.![amount]))}"></span>
     </h2>
@@ -39,6 +39,9 @@
                     <button class="uk-button uk-button-danger" th:text="Usuń"></button>
                 </a>
         </tr>
+
+        <td colspan="5" th:if="${incomes.isEmpty()}" th:text="#{noData}"></td>
+
         </tbody>
     </table>
     <a th:href="@{/}">

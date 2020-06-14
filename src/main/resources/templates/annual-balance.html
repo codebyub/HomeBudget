@@ -5,7 +5,7 @@
 
     <h1>WSZYSTKIE OPERACJE - <span th:text="${#dates.year(#dates.createNow())}"></span> ROK:</h1>
 
-    <h2>SALDO:
+    <h2>SALDO W BIEŻĄCYM ROKU:
         <span th:if="${transactions.isEmpty()}" th:text="${#numbers.formatCurrency(0)}"></span>
         <span th:text="${#numbers.formatCurrency(#aggregates.sum(transactions.![amount]))}"></span>
     </h2>
@@ -29,6 +29,8 @@
             <td th:text="${transaction.category.displayValue}"></td>
             <td th:text="${transaction.description}"></td>
         </tr>
+
+        <td colspan="5" th:if="${transactions.isEmpty()}" th:text="#{noData}"></td>
 
         </tbody>
     </table>

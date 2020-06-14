@@ -12,6 +12,7 @@ import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.*;
 
 @Data
 @Entity
@@ -46,6 +47,14 @@ public class Transaction {
         this.description = description;
         this.updateDate = updateDate;
         this.deleted = deleted;
+    }
+
+    public static BigDecimal minExpenseValue(Collection<Transaction> transactions) {
+        Transaction highestExpense = transactions
+                .stream()
+                .min(Comparator.comparing(Transaction::getAmount))
+                .orElseThrow(NoSuchElementException::new);
+        return highestExpense.getAmount();
     }
 
 }
