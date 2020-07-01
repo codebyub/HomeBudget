@@ -10,10 +10,7 @@
         </a>
     </div>
 
-    <h2>RAZEM:
-        <span th:if="${incomes.isEmpty()}" th:text="${#numbers.formatCurrency(0)}"></span>
-        <span th:text="${#numbers.formatCurrency(#aggregates.sum(incomes.![amount]))}"></span>
-    </h2>
+    <h2 th:text="'RAZEM: ' + ${#numbers.formatCurrency(T(pl.edu.wszib.homebudget.domain.Transaction).currentBalance(incomes))}"></h2>
 
     <table class="uk-table uk-table-hover">
         <thead>

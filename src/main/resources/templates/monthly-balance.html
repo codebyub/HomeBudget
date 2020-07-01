@@ -5,11 +5,7 @@
 
     <h1>WSZYSTKIE OPERACJE- <span th:text="${#dates.monthName(#dates.createNow()).toUpperCase()}"></span>:</h1>
 
-    <h2>SALDO W BIEŻĄCYM MIESIĄCU:
-        <span th:if="${transactions.isEmpty()}" th:text="${#numbers.formatCurrency(0)}"></span>
-        <span th:text="${#numbers.formatCurrency(#aggregates.sum(transactions.![amount]))}"></span>
-    </h2>
-
+    <h2 th:text="'SALDO W BIEŻĄCYM MIESIĄCU: ' + ${#numbers.formatCurrency(T(pl.edu.wszib.homebudget.domain.Transaction).currentBalance(transactions))}"></h2>
 
     <table class="uk-table uk-table-hover">
         <thead>
@@ -26,7 +22,10 @@
         <tr th:each="transaction, iterator : ${transactions}">
             <td th:text="${iterator.count}"></td>
             <td th:text="${transaction.date}"></td>
-            <td th:text="${#numbers.formatCurrency(transaction.amount)}"></td>
+            <td th:if="${transaction.category.getDisplayValue() == 'Wpływy'}"
+                th:text="${#numbers.formatCurrency(transaction.amount)}"></td>
+            <td th:unless="${transaction.category.getDisplayValue() == 'Wpływy'}"
+                th:text="'-' + ${#numbers.formatCurrency(transaction.amount)}"></td>
             <td th:text="${transaction.category.displayValue}"></td>
             <td th:text="${transaction.description}"></td>
         </tr>

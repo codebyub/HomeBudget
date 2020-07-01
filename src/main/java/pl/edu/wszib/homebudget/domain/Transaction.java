@@ -10,6 +10,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -29,6 +30,7 @@ public class Transaction {
     @PastOrPresent(message = "{transaction.date.notFuture}")
     private LocalDate date;
     @NotNull(message = "{transaction.amount.notNull}")
+    @DecimalMin(value = "0.0", message = "{transaction.amount.GT0}")
     private BigDecimal amount;
     private TransactionCategory category;
     private String description;
@@ -55,6 +57,18 @@ public class Transaction {
                 .min(Comparator.comparing(Transaction::getAmount))
                 .orElseThrow(NoSuchElementException::new);
         return highestExpense.getAmount();
+    }
+
+    public static BigDecimal currentBalance(Collection<Transaction> transactions) {
+        BigDecimal balance = BigDecimal.ZERO;
+        for (Transaction t : transactions) {
+            if (t.getCategory() == TransactionCategory.INCOME) {
+                balance = balance.add(t.getAmount());
+            } else {
+                balance = balance.subtract(t.getAmount());
+            }
+        }
+        return balance;
     }
 
 }
