@@ -51,12 +51,12 @@ public class Transaction {
         this.deleted = deleted;
     }
 
-    public static BigDecimal minExpenseValue(Collection<Transaction> transactions) {
+    public static String minExpenseValue(Collection<Transaction> transactions) {
         Transaction highestExpense = transactions
                 .stream()
                 .min(Comparator.comparing(Transaction::getAmount))
                 .orElseThrow(NoSuchElementException::new);
-        return highestExpense.getAmount();
+        return highestExpense.toString();
     }
 
     public static BigDecimal currentBalance(Collection<Transaction> transactions) {
@@ -71,4 +71,10 @@ public class Transaction {
         return balance;
     }
 
+    @Override
+    public String toString() {
+        return "Data: " + date +
+                ", Kwota: " + amount +
+                " zł, Szczegóły: " + category.getDisplayValue() + " / " + description;
+    }
 }

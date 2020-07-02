@@ -27,8 +27,9 @@
 
             <div class="stats-child" th:if="!(${expenses.isEmpty()})">
                 <h3>Najdroższy wydatek:</h3>
-                <h1 th:text="${#numbers.formatCurrency(T(pl.edu.wszib.homebudget.domain.Transaction).minExpenseValue(expenses))}">
-                    :</h1>
+
+                <h4 th:text="${T(pl.edu.wszib.homebudget.domain.Transaction).minExpenseValue(expenses)}"></h4>
+
             </div>
         </div>
 
@@ -46,7 +47,7 @@
                 </thead>
                 <tbody>
                 <tr th:each="salary, iterator : ${salaries}">
-                    <td th:text="${salary.date.getMonth()}"></td>
+                    <td th:text="${#strings.toUpperCase(#temporals.monthNameShort(salary.date))}"></td>
                     <td th:text="${#numbers.formatCurrency(salary.amount)}"></td>
                 </tr>
                 </tbody>
