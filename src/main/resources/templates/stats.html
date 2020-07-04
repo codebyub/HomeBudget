@@ -20,8 +20,9 @@
             <div class="stats-child" th:if="!(${transactions.isEmpty()}) and !(${users.isEmpty()})">
                 <h3>Twoje aktualne saldo:</h3>
                 <h1 th:each="user : ${users}"
-                    th:style="${user.getCompensateBalance().add(#aggregates.sum(transactions.![amount]))} >= 0 ? 'color: green' : 'color: red'"
-                    th:text="${user.getCompensateBalance().add(#aggregates.sum(transactions.![amount]))} + ' zł'">
+                    th:with="cbalance=${user.getCompensateBalance().add(T(pl.edu.wszib.homebudget.domain.Transaction).currentBalance(transactions))}"
+                    th:style="${cbalance} >= 0 ? 'color: green' : 'color: red'"
+                    th:text="${#numbers.formatCurrency(cbalance)}">
                 </h1>
             </div>
 
