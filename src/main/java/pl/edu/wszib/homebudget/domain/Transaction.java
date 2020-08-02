@@ -5,6 +5,7 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.annotations.Where;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -31,6 +32,7 @@ public class Transaction {
     private LocalDate date;
     @NotNull(message = "{transaction.amount.notNull}")
     @DecimalMin(value = "0.0", message = "{transaction.amount.GT0}")
+    @Column(precision = 65, scale = 2)
     private BigDecimal amount;
     private TransactionCategory category;
     private String description;
