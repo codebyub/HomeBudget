@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import pl.edu.wszib.homebudget.dao.TransactionDao;
 import pl.edu.wszib.homebudget.dao.UserDao;
 import pl.edu.wszib.homebudget.domain.Transaction;
+import pl.edu.wszib.homebudget.dto.TransactionDto;
 import pl.edu.wszib.homebudget.service.TransactionService;
 
 import javax.validation.Valid;
@@ -49,19 +50,19 @@ public class TransactionController {
     }
 
     @PostMapping("expenses/save")
-    public String saveExpense(@Valid @ModelAttribute("expense") Transaction transaction, BindingResult bindingResult, Model model) {
+    public String saveExpense(@Valid @ModelAttribute("expense") TransactionDto transactionDto, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            model.addAttribute("expense", transaction);
+            model.addAttribute("expense", transactionDto);
             return "expense";
         }
-        transaction.setAmount(transaction.getAmount().negate());
-        transactionDao.save(transaction);
+        /*transaction.setAmount(transaction.getAmount().negate());*/
+        service.create(transactionDto);
         return "redirect:/expenses";
     }
 
     @GetMapping("expenses/edit/{id}")
-    public String editExpenseForm(@PathVariable long id, Model model) {
-        model.addAttribute("expense", transactionDao.findById(id));
+    public String editExpenseForm(@PathVariable Integer id, Model model) {
+        model.addAttribute("expense", service.get(id));
         return "expense";
     }
 
@@ -121,7 +122,7 @@ public class TransactionController {
     @GetMapping("statistics")
     public String stats(Model model) {
         model.addAttribute("transactions", transactionDao.findAllInCurrentYear());
-        model.addAttribute("salaries", transactionDao.findSalariesInCurrentYear());
+        /*model.addAttribute("salaries", transactionDao.findSalariesInCurrentYear());*/
         model.addAttribute("users", userDao.findAll());
         return "stats";
     }
